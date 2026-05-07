@@ -81,6 +81,15 @@ app.post(
   }
 );
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Welcome to IMAGE API"
+  });
+});
+
+app.use("/uploads", express.static("/var/www/uploads"));
+
 app.listen(8000, () => {
   console.log("Server running on port 8000");
 });
