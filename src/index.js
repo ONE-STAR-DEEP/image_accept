@@ -4,6 +4,8 @@ import path from "path";
 import fs from "fs";
 
 const app = express();
+app.use(express.json());
+
 
 const uploadPath = "/var/www/uploads";
 
