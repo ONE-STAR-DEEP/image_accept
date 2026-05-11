@@ -6,7 +6,6 @@ import fs from "fs";
 const app = express();
 app.use(express.json());
 
-
 const uploadPath = "/var/www/uploads";
 
 // Create folder if not exists
@@ -83,7 +82,7 @@ app.post(
   }
 );
 
-router.post("/officeig", async (req, res) => {
+app.post("/officeig", async (req, res) => {
   try {
 
     // Header verification
