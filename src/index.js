@@ -81,6 +81,53 @@ app.post(
   }
 );
 
+router.post("/officeig", async (req, res) => {
+  try {
+
+    // Header verification
+    const deviceKey = req.headers["device-key"];
+
+    console.log("Device Key:", deviceKey);
+
+    // Webhook payload
+    const data = req.body;
+
+    console.log("Received Webhook Data:");
+    console.dir(data, { depth: null });
+
+    // Check if payload is array
+    if (Array.isArray(data)) {
+
+      for (const attendance of data) {
+
+        console.log("---------------");
+        console.log("Employee:", attendance.name);
+        console.log("Enroll ID:", attendance.enrollid);
+        console.log("Time:", attendance.time);
+        console.log("Mode:", attendance.mode);
+        console.log("Device:", attendance.device_no);
+
+      }
+
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Webhook received"
+    });
+
+  } catch (error) {
+
+    console.error("OfficeIG Webhook Error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error"
+    });
+
+  }
+});
+
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
